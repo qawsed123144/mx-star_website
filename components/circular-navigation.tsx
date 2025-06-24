@@ -3,20 +3,14 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 
+import { sections } from '@/lib/section';
+
 interface NavigationProps {
-  activeSection: string;
-  onSectionChange: (section: string) => void;
+  activeSection: string | null;
+  onSelectSection?: (sectionId: string) => void;
 }
 
-const navigationItems = [
-  { id: 'about', label: '關於\n我們', angle: 0 },
-  { id: 'services', label: '顧問\n服務', angle: 72 },
-  { id: 'data-thinking', label: '大數據\n思維', angle: 144 },
-  { id: 'contact', label: '聯絡\n我們', angle: -72 },
-  { id: 'why-us', label: '我們的\n優勢', angle: -144 },
-];
-
-export default function CircularNavigation({ activeSection, onSectionChange }: NavigationProps) {
+export default function CircularNavigation({ activeSection, onSelectSection }: NavigationProps) {
   const [hoveredItem, setHoveredItem] = useState<string | null>(null);
 
   return (
@@ -28,7 +22,6 @@ export default function CircularNavigation({ activeSection, onSectionChange }: N
       <motion.div
         className="w-48 h-48 rounded-full bg-gradient-to-br from-[var(--gold)] to-[var(--gold-light)] 
           flex flex-col items-center justify-center text-[var(--deep-black)] animate-pulse-gold cursor-pointer"
-        onClick={() => onSectionChange('home')}
       >
         <div className="text-4xl font-bold mb-2">MX</div>
         <div className="text-sm font-medium">敏星數據</div>
@@ -36,7 +29,7 @@ export default function CircularNavigation({ activeSection, onSectionChange }: N
 
       <div className="flex items-center justify-center">
         {/* Surrounding Navigation Circles */}
-        {navigationItems.map((item) => {
+        {sections.map((item) => {
           return (
             <div
               key={item.id}
@@ -63,16 +56,20 @@ export default function CircularNavigation({ activeSection, onSectionChange }: N
                   ? 'bg-[hsla(45,68%,53%,0.4)] border-[var(--gold-light)]'
                   : 'bg-[hsla(45,68%,53%,0.2)] hover:bg-[hsla(45,68%,53%,0.3)]'
                   }`}
-                onClick={() => onSectionChange(item.id)}
                 onMouseEnter={() => setHoveredItem(item.id)}
                 onMouseLeave={() => setHoveredItem(null)}
-                whileHover={{ scale: 1.1 }}
+                onClick={() => {
+                  onSelectSection?.(item.id);
+                }} whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.95 }}
                 animate={{
                   boxShadow: activeSection === item.id || hoveredItem === item.id
                     ? '0 0 25px hsla(45, 68%, 53%, 0.5)'
                     : '0 0 0px hsla(45, 68%, 53%, 0)'
                 }}
+                tabIndex={0}
+                role="button"
+                aria-label={item.label.replace('\n', '')}
               >
                 <span className="text-sm font-medium text-center whitespace-pre-line">
                   {item.label}
