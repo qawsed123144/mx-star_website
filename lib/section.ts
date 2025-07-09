@@ -9,5 +9,5 @@ export const sections = [
   { id: 'service', label: '顧問\n服務', angle: 72, component: Service },
   { id: 'big-data', label: '大數據\n思維', angle: 144, component: BigData },
   { id: 'strength', label: '我們的\n優勢', angle: 216, component: Strength },
-  { id: 'contact', label: '聯絡\n我們', angle: 288, component: Contact},
+  { id: 'contact', label: '聯絡\n我們', angle: 288, component: Contact },
 ];

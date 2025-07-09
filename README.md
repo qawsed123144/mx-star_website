@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MX-STAR 官網
 
-## Getting Started
+本專案為官方網站，採用 Next.js 架構，已部署至 [Vercel](https://mx-star-website.vercel.app) (點即可查看)。
 
-First, run the development server:
+![範例](./images/ex.png)
+## 本地啟動
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+啟動後請開啟瀏覽器前往 [http://localhost:3000](http://localhost:3000) 查看畫面。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+你可以透過修改 `app/page.tsx` 來開始編輯頁面，儲存後會自動更新。
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
 
-## Learn More
+## .gitignore 範例
 
-To learn more about Next.js, take a look at the following resources:
+為避免將不必要的檔案納入版本控制，建議在專案根目錄新增 `.gitignore`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```gitignore
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# testing
+/coverage
 
-## Deploy on Vercel
+# next.js
+/.next/
+/out/
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+# production
+/build
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+```
+
